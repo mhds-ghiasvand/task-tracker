@@ -1,12 +1,12 @@
 {
   "name": "task-tracker",
   "version": "1.0.0",
-  "description": "",
+  "description": "A CLI app to track your tasks and manage your to-do list",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "",
+  "author": "M.Ghiasvand",
   "license": "ISC"
 }
