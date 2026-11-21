@@ -1,18 +1,25 @@
 const path = require("path");  
 const fs = require("node:fs/promises");
 
-const filePath = path.join(__dirname, "tasks.json");
+
 
 class Storage{
-
+    constructor(filePath = path.join(__dirname, "tasks.json")){
+        this.filePath = filePath;
+    }
     async read(){
         try{
-            const text =  await fs.readFile(filePath,"utf-8");
+            const text =  await fs.readFile(this.filePath,"utf-8");
             if(!text){
                 return [];
             }
-            return JSON.parse(text);
+            const data = JSON.parse(text);
+            if (!Array.isArray(data)){
+                throw new Error("Invalid tasks data");
+            }
+            return data;
         }
+
         catch(error){
             if(error.code === "ENOENT"){
                 return [];
@@ -23,7 +30,7 @@ class Storage{
  }
     async write(list){
         const text = JSON.stringify(list, null, 2);
-        await fs.writeFile(filePath, text);
+        await fs.writeFile(this.filePath, text);
     }
 }
 
