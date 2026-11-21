@@ -15,11 +15,13 @@ const save = new Storage();
 let cacheList;
 
 async function showMenu(rl){
+  
   console.log("1.Add new task");
   console.log("2.Edit title");
   console.log("3.Delete task");
-  console.log("4.list task by priority");
+  console.log("4.Show all tasks");
   console.log("5.Exit");
+ 
 
   const commandNumber = await rl.question("Choose a number : ");
 
@@ -88,10 +90,12 @@ function showHandler(tasks){
 
 async function main(){
   try {
-    cacheList = await save.read();
-
-    const result = await menuHandler();
-    console.log(result);
+    let result;
+    do{
+      cacheList = await save.read();
+      result = await menuHandler();
+      console.log(result);
+    }while(result !== "Goodbye!")
   }
   catch(error){
     console.error("Error:", error.message);
