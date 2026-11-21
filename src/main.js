@@ -54,7 +54,7 @@ async function addHandler(tasks){
   if(!title.trim()){
     return "Title cannot be empty!";
   }
-
+  
   cacheList.push(task.add(title,tasks))
   return save.write(cacheList)
 }
@@ -65,7 +65,6 @@ async function editHandler(tasks){
   if(!newTitle.trim()){
     return "Title cannot be empty!";
 }
-
 
   const updatedTasks = task.edit(id,newTitle,tasks)
   if(updatedTasks === null){
@@ -87,8 +86,6 @@ function showHandler(tasks){
   return task.showAll(tasks);
 }
 
-
-
 async function main(){
   try {
     cacheList = await save.read();
@@ -104,8 +101,4 @@ async function main(){
   }
 }
 
-
-
-
 main();
-

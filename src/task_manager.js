@@ -9,7 +9,6 @@ class TaskList{
             }    
     }
 
-
     edit(id,newTitle,tasks){ 
         const exists = tasks.some(task => task.id === id)
         if(!exists){
@@ -32,7 +31,10 @@ class TaskList{
     }
 
     showAll(tasks){
-        return tasks;
+        return tasks
+        .map(task => {
+            return `${task.id} : ${task.title}`
+        }).join("\n")
        
     }
 }

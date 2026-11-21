@@ -31,6 +31,8 @@ class Storage{
     async write(list){
         const text = JSON.stringify(list, null, 2);
         await fs.writeFile(this.filePath, text);
+        return "file updated:)"
+
     }
 }
 
